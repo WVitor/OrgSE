@@ -1,0 +1,20 @@
+{
+  "PLANOS": [
+    {
+      "id": 1,
+      "TOPICO": "Plano de estudos teste",
+      "TOPICOPAIID": "0",
+      "PRIMEIRO": true,
+      "URL": "plano-de-estudos-teste",
+      "STATUS": false
+    },
+    {
+      "id": 2,
+      "TOPICO": "teste 1",
+      "TOPICOPAIID": "1",
+      "PRIMEIRO": false,
+      "URL": "",
+      "STATUS": false
+    }
+  ]
+}

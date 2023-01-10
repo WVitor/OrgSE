@@ -1,0 +1,26 @@
+<div class="NovoProjeto_container">
+    <h1>Criar um Topico para seus plano de estudos</h1>
+    {{#if topicoExists}}
+        <p>Ja existe um topico com esse nome, por favor use outro.</p>
+    {{/if}}
+    <form action="/criar-topico-filho" method="POST" class="form">
+        <div class="form_control">
+            <label for='topico'>Topico</label>
+            <input type="text" name="topico" placeholder="Informe o nome do Topico de estudo" required/>
+        </div>
+        <div class="form_control">
+            <label for="topicoPaiId">Escolha o plano de estudo:</label>
+            <select name="topicoPaiId" required>
+                {{#if topicos}}
+                {{#each topicos}}
+                    <option value={{this.id}}>{{this.TOPICO}}</option>
+                {{/each}}
+                {{else}}
+                    <option value=null>sem planos de estudos disponíveis</option>
+                {{/if}}
+            </select>
+        </div> 
+        <button class="btn">Criar</button>
+    </form>
+
+</div>   

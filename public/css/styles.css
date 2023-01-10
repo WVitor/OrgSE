@@ -1,0 +1,231 @@
+* {
+    font-family: Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ADD8E6;
+    color: #4682B4;
+}
+/* NAVBAR */
+#logo img {
+    height: 40px;
+}
+    
+#navbar {
+    padding: 1.2em 2.4em;
+    margin-bottom: 1em;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    background-color: #ADD8E6;
+    color: #fff;
+    border-bottom: 2px solid #4682B4;
+}
+
+/* CONTAINER */   
+.container {
+min-height: 70vh;
+padding: 2px;
+margin: 10px;
+}
+
+footer {
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: 2px solid #4682B4;
+    background-color: #ADD8E6;
+
+}
+footer p {
+    margin-bottom: 1px;
+    padding: 10px;
+}
+footer span {
+font-weight: bold;
+color: #4682B4;
+}
+footer a{
+    text-decoration: none;
+    color: #4682B4;
+}
+
+
+.project_card {
+    padding: 1em;
+    border: 1px solid #4682B4;
+    border-radius: 5px;
+    width: 24%;
+    margin: 0.5%;
+    height: auto;
+  }
+  
+  .project_card h4 {
+    background-color: #4682B4;
+    color: #ADD8E6;
+    padding: 0.4em;
+    margin-bottom: 1.3em;
+    font-size: 1.3em;
+    border-radius: 5px;
+  }
+  
+  .project_card p {
+    color: #4682B4;
+    margin-bottom: 1em;
+  }
+  
+  .project_card p span {
+    font-weight: bold;
+  }
+  
+  .project_card_actions {
+    margin-top: 1.2em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .project_card_actions a,
+  .project_card_actions button {
+    border-radius: 5px;
+    text-decoration: none;
+    border: none;
+    background-color: #ADD8E6;
+    color: #4682B4;
+    font-size: 0.9em;
+    padding: 0.6em 1em;
+    cursor: pointer;
+    border: 1px solid #4682B4;
+    transition: 0.5s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .project_card_actions svg {
+    margin-right: 0.5em;
+  }
+  
+  .project_card_actions a:hover,
+  .project_card_actions button:hover {
+    background-color: #4682B4;
+    color: #ADD8E6;
+  }
+
+  .container-card {
+    display: flex;
+    min-height: 30vh;
+  }
+
+  .project_container{
+    width: 1200px;
+    display: flex;
+    justify-content: flex-start; /*espacar os elementos de forma igual na horizontal*/
+    margin: 0 auto; /*contralizar o conteudo na tela*/
+    flex-wrap: wrap;
+}
+
+.title_container{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2em;
+}
+
+.btn{
+  background-color: #ADD8E6;
+  color: #4682B4;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  transform: 0.5s;
+  border: 1px solid #4682B4;
+  transition: 0.5s;
+}
+.btn:hover{
+  
+  background-color: #4682B4;
+  color: #ADD8E6;
+}
+
+.NovoProjeto_container{
+  width: 450px;
+  margin: 0 auto;
+  padding: 3em;
+}
+
+.NovoProjeto_container h1{
+  margin-bottom: 0.5em;
+
+}
+
+.NovoProjeto_container p{
+  color: #4682B4;
+}
+
+.form{
+  width: 100%;
+  margin: 2em 0;
+}
+
+.form_control{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1em;
+}
+
+.form_control label{
+  margin-bottom: .6em;
+  font-weight: bold;
+}
+
+.form_control input{
+  padding: .7em;
+  border-radius: 0;
+  border: 1px solid #4682B4 ;
+}
+
+.form_control input::placeholder{
+  color: #4682B4;
+
+}
+  
+.form_control select {
+  padding: 7px;
+  border-radius: 3px;
+  border: 1px solid #4682B4; 
+}
+
+.submit_btn{
+  border-radius: 5px;
+  background-color:#ADD8E6;
+  color: #4682B4;
+  padding: 0.7em 1.2em;
+  text-decoration: none;
+  transform: .5s;
+  cursor: pointer;
+  border: 1px solid #4682B4;
+  transition: 0.5s;;
+
+}
+.submit_btn:hover{
+  background-color:#4682B4;
+  color: #ADD8E6;
+}
+
+.title-container {
+display: flex;
+justify-content: space-between;
+margin-bottom: 1.5em;
+}
+
+.title-container h2 {
+border-left: 4px solid #4682B4;
+padding: 10px;
+}
+
+table, th, td{
+  border: 1px solid #4682B4;
+  align-items: center;
+  padding: 10px;
+  text-align: center;
+  margin: auto;
+}

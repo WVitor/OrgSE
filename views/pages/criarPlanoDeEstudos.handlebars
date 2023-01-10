@@ -1,0 +1,15 @@
+<div class="NovoProjeto_container">
+    <h1>Criar Plano de estudos</h1>
+    {{#if topicoExists}}
+        <p>Ja existe um topico com esse nome, por favor use outro.</p>
+    {{/if}}
+    <form action="/criar-estudo" method="POST" class="form">
+        <div class="form_control">
+            <label for='topico'>Topico</label>
+            <input type="text" name="topico" placeholder="Informe o nome do Topico de estudo" required/>
+        </div>
+
+        <button class="btn">Criar</button>
+    </form>
+
+</div>   

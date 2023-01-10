@@ -1,0 +1,20 @@
+<div class"project_container">
+    <div class="title_container">
+        <h1>Meus Estudos</h1>
+        <a href='/criar-estudo' class="submit_btn">Criar plano de estudos</a>
+    </div>
+    <div class="project_container">
+        {{#each planos}}
+            <div class="project_card"> 
+                        <h4>{{this.TOPICO}}</h4>
+                        <div class="project_card_actions">
+                            <a href="/{{this.URL}}">Acessar</a>
+                            <form action="/excluir-estudo" method="post">
+                                <input type="hidden" name="id" value="{{this.id}}">
+                                <input type="submit" value="Excluir" class="submit_btn">
+                            </form>
+                        </div>
+            </div>
+        {{/each}}
+    </div>
+</div>

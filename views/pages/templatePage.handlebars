@@ -1,0 +1,47 @@
+<div class="title-container">
+    <div></div>
+    <h2>{{topicoPai.TOPICO}}</h2>
+    <div style="margin-right: 18px;">
+        <a href="/criar-topico-filho" class="submit_btn" >Cadastrar</a>
+    </div>
+
+</div>
+<div class="tabela-topicos">
+    <table >
+        <thead>
+            <tr>
+                <th>Topico</th>
+                <th>Status</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each topicosFilhos}}
+            <tr>
+                <td><span class="label">{{this.TOPICO}}</span></td>
+                <td><span>
+                        <form action="/alterar-status" method="post">
+                            {{#if this.STATUS}}
+                                <input type="checkbox" checked disabled> 
+                            {{else}}
+                                <input type="checkbox" disabled>
+                            {{/if}}
+                            <input type="hidden" name="id" value="{{this.id}}">
+                            <input type="submit" value="Alterar" class="submit_btn">
+                        </form>
+                    </span>
+                </td>
+                <td>
+                    <span class="actions">
+                        <form action="/excluir-topico-filho" method="post">
+                            <input type="hidden" name="id" value="{{this.id}}">
+                            <input type="submit" value="Excluir" class="submit_btn">
+                        </form>
+                    </span>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
+<a href="/" class="submit_btn">voltar</a>
