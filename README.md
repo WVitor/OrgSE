@@ -27,6 +27,6 @@ para instalar um projeto basta apenas:
       
 ### Running
 Para executar o sistema é necessario estar com a porta 3000 e porta 5000 desocupadas, se necessario elas podem ser alteradas manualmente no arquivo 'packege.json' e '.env'
-abrir dois terminais dentro da pasta do projeto.
+ - abrir dois terminais dentro da pasta do projeto.
  - no primeiro terminal execute o comando ```sh $ npm run backend``` para executar o backend do serviço.
  - no segundo terminal execute o comando ```sh $ npm start``` ou ```sh $ npm run dev``` para executar o sistema.
