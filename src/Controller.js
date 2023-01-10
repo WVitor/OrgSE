@@ -1,10 +1,10 @@
 const fs = require('fs')
 const axios = require('axios')
-
+const API_URL = process.env.API_URL
 module.exports = class Controller{
     static async main(req, res, rotas){
         try {
-            const planos = await axios.get('http://localhost:5000/PLANOS?PRIMEIRO=true')
+            const planos = await axios.get(`${API_URL}?PRIMEIRO=true`)
             .then(function (response) {
               // handle success
               return response.data;
@@ -27,12 +27,12 @@ module.exports = class Controller{
             let topicoPai = {}
             const topicosFilhos = []
             //topico pai
-            await axios.get(`http://localhost:5000/PLANOS?URL=${req.path.slice(1)}`)
+            await axios.get(`${API_URL}?URL=${req.path.slice(1)}`)
             .then(async function (response) {
               // handle success
                 topicoPai = response.data[0];
                 //topicos filhos
-               return await axios.get(`http://localhost:5000/PLANOS?TOPICOPAIID=${topicoPai.id}&_sort=id&_order=asc`)
+               return await axios.get(`${API_URL}?TOPICOPAIID=${topicoPai.id}&_sort=id&_order=asc`)
                 .then(function (res) {
                   // handle success
                   return res.data.forEach(valor => {
@@ -75,7 +75,7 @@ module.exports = class Controller{
         try {
             const TOPICO = req.body.topico
             let topicoExists = false
-            await axios.get(`http://localhost:5000/PLANOS?TOPICO=${TOPICO}`)
+            await axios.get(`${API_URL}?TOPICO=${TOPICO}`)
             .then(function (response) {
               // handle success
               if(response.data.length > 0 && response.data[0].TOPICO == TOPICO){
@@ -92,7 +92,7 @@ module.exports = class Controller{
             });
 
             if(!topicoExists){
-                await axios.post('http://localhost:5000/PLANOS', {
+                await axios.post(API_URL, {
                     TOPICO,
                     TOPICOPAIID: "0",
                     PRIMEIRO: true,
@@ -113,7 +113,7 @@ module.exports = class Controller{
         try {
             const TOPICOID = req.body.id
             const topicosFilhos = [] 
-            await axios.get(`http://localhost:5000/PLANOS?TOPICOPAIID=${TOPICOID}`)
+            await axios.get(`${API_URL}?TOPICOPAIID=${TOPICOID}`)
             .then(async function (response) {
               // handle success         
                 return response.data.map((valor)=>{
@@ -129,10 +129,10 @@ module.exports = class Controller{
             });
             if(topicosFilhos.length > 0){
               for(var i = 0; i < topicosFilhos.length; i++){
-                await axios.delete(`http://localhost:5000/PLANOS/${topicosFilhos[i].id}`)
+                await axios.delete(`${API_URL}/${topicosFilhos[i].id}`)
               }
             }
-            await axios.delete(`http://localhost:5000/PLANOS/${TOPICOID}`).then(()=>{
+            await axios.delete(`${API_URL}/${TOPICOID}`).then(()=>{
               return  res.redirect('/')
             })
         } catch (error) {
@@ -143,7 +143,7 @@ module.exports = class Controller{
     static async criarTopicoFilho(req, res){
       try {
          let topicoExists = false
-          const topicos = await axios.get(`http://localhost:5000/PLANOS?PRIMEIRO=true`).then((response)=>{
+          const topicos = await axios.get(`${API_URL}?PRIMEIRO=true`).then((response)=>{
             return response.data
           }).catch(function (error){
             console.log(error)
@@ -159,7 +159,7 @@ module.exports = class Controller{
           const TOPICO = req.body.topico
           const TOPICOPAIID = req.body.topicoPaiId
           let topicoExists = false
-          await axios.get(`http://localhost:5000/PLANOS?TOPICO=${TOPICO}`)
+          await axios.get(`${API_URL}?TOPICO=${TOPICO}`)
           .then(function (response) {
             // handle success
             if(response.data.length > 0 && response.data[0].TOPICO == TOPICO){
@@ -176,14 +176,14 @@ module.exports = class Controller{
           });
 
           if(!topicoExists){
-              await axios.post('http://localhost:5000/PLANOS', {
+              await axios.post(API_URL, {
                   TOPICO,
                   TOPICOPAIID: TOPICOPAIID.toString(),
                   PRIMEIRO: false,
                   URL: "",
                   STATUS: false
               })
-              const TOPICOPAIURL = await axios.get(`http://localhost:5000/PLANOS/${TOPICOPAIID}`).then((response)=>{
+              const TOPICOPAIURL = await axios.get(`${API_URL}/${TOPICOPAIID}`).then((response)=>{
                 return response.data.URL
               })
               return res.redirect(`/${TOPICOPAIURL}`)
@@ -199,12 +199,12 @@ module.exports = class Controller{
   static async excluirTopicoFilho(req, res){
     try {
         const TOPICOID = req.body.id
-        const TOPICOPAIURL = await axios.get(`http://localhost:5000/PLANOS/${TOPICOID}`).then(async(response)=>{
-          return await axios.get(`http://localhost:5000/PLANOS/${response.data.TOPICOPAIID}`).then((response)=>{
+        const TOPICOPAIURL = await axios.get(`${API_URL}/${TOPICOID}`).then(async(response)=>{
+          return await axios.get(`${API_URL}/${response.data.TOPICOPAIID}`).then((response)=>{
               return response.data.URL
           })
         })
-        await axios.delete(`http://localhost:5000/PLANOS/${TOPICOID}`).then(()=>{
+        await axios.delete(`${API_URL}/${TOPICOID}`).then(()=>{
           return  res.redirect(`/${TOPICOPAIURL}`)
         })
     } catch (error) {
@@ -216,16 +216,15 @@ module.exports = class Controller{
     try {
       const TOPICOID = req.body.id
       let topico = {}
-      await axios.get(`http://localhost:5000/PLANOS/${TOPICOID}`).then(async(response)=>{
+      await axios.get(`${API_URL}/${TOPICOID}`).then(async(response)=>{
         return topico = response.data
       })
       topico.STATUS = !topico.STATUS
-      console.log(topico)
       
-      await axios.delete(`http://localhost:5000/PLANOS/${topico.id}`)
-      await axios.post("http://localhost:5000/PLANOS", topico)
+      await axios.delete(`${API_URL}/${topico.id}`)
+      await axios.post(API_URL, topico)
       
-      const TOPICOPAIURL = await axios.get(`http://localhost:5000/PLANOS/${topico.TOPICOPAIID}`).then((response)=>{
+      const TOPICOPAIURL = await axios.get(`${API_URL}/${topico.TOPICOPAIID}`).then((response)=>{
         return response.data.URL
       })
       return res.redirect(`/${TOPICOPAIURL}`)

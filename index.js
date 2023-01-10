@@ -1,3 +1,4 @@
+require('dotenv').config({path:'./.env'})
 const Express = require('express')
 const app = Express()
 const exphbs = require('express-handlebars')
@@ -28,6 +29,6 @@ rotas.map((rota)=>{
 
 app.get('/', Controller.main)
 
-app.listen(3000, ()=>{
-    console.log('rodando na porta 3000')
+app.listen(process.env.PORTA, ()=>{
+    console.log(`rodando na porta ${process.env.PORTA}`)
 })
