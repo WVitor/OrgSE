@@ -19,11 +19,11 @@ para instalar um projeto basta apenas:
   - Baixar ou clonar este repositorio.
   - Ter o nodejs instalado em sua maquina
   ## Configuração do node
-    - Executar este camando ```sh $ npm install``` via terminal dentro da pasta do projeto.
+    - Execute o camando ```sh $ npm install``` via terminal dentro da pasta do projeto.
   ## Variaveis de ambiente
     - Criar o um arquivo chamado '.env' dentro da pasta do projeto.
-      - Criar a variavel de ambiente chamada 'PORTA=3000'. 
-      - Criar a variavel de ambiente chamada 'API_URL=http://localhost:5000/PLANOS'. 
+    - Criar a variavel de ambiente chamada 'PORTA=3000'. 
+    - Criar a variavel de ambiente chamada 'API_URL=http://localhost:5000/PLANOS'. 
       
 ### Running
 Para executar o sistema é necessario estar com a porta 3000 e porta 5000 desocupadas, se necessario elas podem ser alteradas manualmente no arquivo 'packege.json' e '.env'
