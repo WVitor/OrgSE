@@ -3,10 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "type": [
-    "module",
-    "CommonJS"
-  ],
+  "type": ["module","CommonJS"],
   "scripts": {
     "dev": "nodemon --watch './' --exec 'node index.js' -e js",
     "backend": "json-server --watch ./assets/backend.json --port 5000",
