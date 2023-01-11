@@ -3,7 +3,6 @@ const Express = require('express')
 const app = Express()
 const exphbs = require('express-handlebars')
 const Controller = require('./src/Controller') 
-const fs = require('fs')
 
 app.use(Express.urlencoded({extended: true}))
 app.use(Express.json())
@@ -21,13 +20,8 @@ app.post('/criar-topico-filho', Controller.criarTopicoFilhoPost)
 app.post('/excluir-topico-filho', Controller.excluirTopicoFilho)
 app.post('/alterar-status', Controller.alterarStatus)
 
-let rotas = []
-JSON.parse(fs.readFileSync("./assets/backend.json", {encoding:'utf8'})).PLANOS.forEach((valor)=>{ if(valor.PRIMEIRO) {return rotas.push(valor.URL)}})
-rotas.map((rota)=>{
-    app.get(`/${rota}`, Controller.mainPages)
-})
-
 app.get('/', Controller.main)
+app.get('/*', Controller.mainPages)
 
 app.listen(process.env.PORTA, ()=>{
     console.log(`rodando na porta ${process.env.PORTA}`)

@@ -9,13 +9,6 @@ module.exports = class Controller{
               // handle success
               return response.data;
             })
-            .catch(function (error) {
-              // handle error
-              console.log(error);
-            })
-            .finally(function () {
-              // always executed
-            })
            return res.render('pages/home', {planos: planos})
         } catch (error) {
             console.log(error)
@@ -24,37 +17,29 @@ module.exports = class Controller{
 
     static async mainPages(req, res){
         try {
-            let topicoPai = {}
             const topicosFilhos = []
             //topico pai
-            await axios.get(`${API_URL}?URL=${req.path.slice(1)}`)
+            let topicoPai = await axios.get(`${API_URL}?URL=${req.path.slice(1)}`)
             .then(async function (response) {
               // handle success
-                topicoPai = response.data[0];
+                return response.data[0];
                 //topicos filhos
-               return await axios.get(`${API_URL}?TOPICOPAIID=${topicoPai.id}&_sort=id&_order=asc`)
+               
+            })
+            if(topicoPai){
+               await axios.get(`${API_URL}?TOPICOPAIID=${topicoPai.id}&_sort=id&_order=asc`)
                 .then(function (res) {
                   // handle success
                   return res.data.forEach(valor => {
                     topicosFilhos.push(valor)
                   });;
                 })
-                .catch(function (error) {
-                  // handle error
-                  console.log(error);
-                })
-                .finally(function () {
-                  // always executed
-                });
-            })
-            .catch(function (error) {
-              // handle error
-              console.log(error);
-            })
-            .finally(function () {
-              // always executed
-            });
-            return res.render('pages/templatePage', {topicoPai: topicoPai, topicosFilhos: topicosFilhos})
+                return res.render('pages/templatePage', {topicoPai: topicoPai, topicosFilhos: topicosFilhos})
+            }else{
+              return res.redirect('/')
+            }
+
+            
             
         } catch (error) {
             console.log(error)
@@ -83,13 +68,6 @@ module.exports = class Controller{
               }
               return
             })
-            .catch(function (error) {
-              // handle error
-              console.log(error);
-            })
-            .finally(function () {
-              // always executed
-            });
 
             if(!topicoExists){
                 await axios.post(API_URL, {
@@ -120,13 +98,6 @@ module.exports = class Controller{
                     topicosFilhos.push(valor)
                 })             
             })
-            .catch(function (error) {
-              // handle error
-              console.log(error);
-            })
-            .finally(function () {
-              // always executed
-            });
             if(topicosFilhos.length > 0){
               for(var i = 0; i < topicosFilhos.length; i++){
                 await axios.delete(`${API_URL}/${topicosFilhos[i].id}`)
@@ -145,8 +116,6 @@ module.exports = class Controller{
          let topicoExists = false
           const topicos = await axios.get(`${API_URL}?PRIMEIRO=true`).then((response)=>{
             return response.data
-          }).catch(function (error){
-            console.log(error)
           })
          return res.render('pages/criarTopicoFilho', {topicoExists, topicos})
       } catch (error) {
@@ -167,13 +136,6 @@ module.exports = class Controller{
             }
             return
           })
-          .catch(function (error) {
-            // handle error
-            console.log(error);
-          })
-          .finally(function () {
-            // always executed
-          });
 
           if(!topicoExists){
               await axios.post(API_URL, {
