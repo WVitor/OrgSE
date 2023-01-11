@@ -49,7 +49,7 @@ module.exports = class Controller{
 
   static async criarPlanoDeEstudosPost(req, res){
       try {
-          const TOPICO = req.body.topico
+          const TOPICO = req.body.topico.trim()
           let topicoExists = false
 
           await axios.get(`${API_URL}?TOPICO=${TOPICO}`)
@@ -122,7 +122,7 @@ module.exports = class Controller{
 
   static async criarTopicoFilhoPost(req, res){
       try {
-          const TOPICO = req.body.topico
+          const TOPICO = req.body.topico.trim()
           const TOPICOPAIID = req.body.topicoPaiId
           let topicoExists = false
 
