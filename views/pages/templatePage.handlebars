@@ -18,7 +18,12 @@
         <tbody>
             {{#each topicosFilhos}}
             <tr>
-                <td><span class="label">{{this.TOPICO}}</span></td>
+                {{#if this.STATUS}}
+                    <td><s><span class="label">{{this.TOPICO}}</span></s></td>
+                {{else}}
+                    <td><span class="label">{{this.TOPICO}}</span></td>
+                {{/if}}
+                
                 <td><span>
                         <form action="/alterar-status" method="post">
                             {{#if this.STATUS}}
